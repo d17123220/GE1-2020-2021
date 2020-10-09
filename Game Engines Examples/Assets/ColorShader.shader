@@ -68,7 +68,10 @@ Shader "Custom/ColorShader" {
 			// And the modulus operator %
 			// You can also use the built in variable _Time 
 			// that gives the time in seconds since the program started. It's a float.			
-			float hue = 1;
+			float distance = (sqrt(pow(IN.worldPos.x,2 ) + pow(IN.worldPos.y, 2)) + _Time*30) % 9;
+			
+			
+			float hue = (1.0f / 9) * (distance - 1) ;
 			fixed3 c = hsv_to_rgb(float3(hue, 1, 1));
 			o.Albedo = c.rgb;
 			// Metallic and smoothness come from slider variables
